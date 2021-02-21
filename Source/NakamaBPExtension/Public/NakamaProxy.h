@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright 2021 DeoVolenteGames
 
 #pragma once
 
@@ -13,7 +13,7 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FOnErrorResponse, FNakamaErrorResponse, ErrorR
 
 /**
  * Super jank way of setting up common boilerplate for Nakama async nodes
- * https://wiki.unrealengine.com/Creating_Asynchronous_Blueprint_Nodes
+ * https://ue4community.wiki/legacy/Creating_Asynchronous_Blueprint_Nodes
  */
 template<typename SuccessResponse, typename OnSuccessResponse, typename OnAnyResponse>
 class NAKAMABPEXTENSION_API TNakamaProxy

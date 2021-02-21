@@ -57,6 +57,7 @@ Also, you need to be able to build C++ projects with Unreal, currently I am not 
 
 ### TODO
 
+1. Global error delegate to catch all errors.
 1. Friends.
 1. Realtime chat.
 1. Matchmaking.

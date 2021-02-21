@@ -1,9 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright 2021 DeoVolenteGames
 
 #include "..\Public\NakamaRPC.h"
 #include "NakamaBPExtension.h"
 
-// https://wiki.unrealengine.com/Creating_Asynchronous_Blueprint_Nodes
+// https://ue4community.wiki/legacy/Creating_Asynchronous_Blueprint_Nodes
 
 void UNakamaRPC::Activate()
 {

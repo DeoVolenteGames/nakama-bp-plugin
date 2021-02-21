@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright 2021 DeoVolenteGames
 
 #include "../Public/Storage/NakamaStorageDelete.h"
 #include "NakamaBPExtension.h"

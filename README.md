@@ -14,7 +14,7 @@ usage of Nakama pretty well.
 Currently designed and tested with Nakama server version 3.1.1, and Nakama
 Unreal version 2.4.0.
 
-## To use
+## Getting Started
 
 1. Make sure your Unreal project is a C++ project. If it is Blueprint only, you
    can add a new C++ file to your project in Unreal Editor via "File -> New C++
@@ -22,18 +22,29 @@ Unreal version 2.4.0.
    the plugins.
 1. If one does not already exist, create a Plugins folder at the root of your
    project.
-1. Copy the Nakama C++ plugin into your plugins directory. Follow the
-   instructions it has to install, but don't worry about setting it up in code.
-1. Copy this plugin into your plugins directory.
-1. Build the project solution.
+1. Copy the [Nakama C++ plugin for Unreal][nakama-unreal] into your project's
+   plugins directory. Follow the instructions it has to install, but don't worry
+   about setting it up in code.
+1. Copy this plugin into a folder in your project's plugins directory.
+1. Build the project solution and open the project.
+1. Create a client using the `Create Nakama Client` node. A good place to put
+   this is in your game instance. If you're only testing you don't need to
+   change any of the arguments (in fact this node isn't required when testing)
+   but in production you'll want to set the host address at least.
+1. Authenticate using one of the authentication nodes. For testing it can be
+   good to start with custom authentication.
+1. On the success of your authentication then you're good to go! Try testing it
+   out with the `Get Account` node.
 
 ## Info
 
-For JSON parsing in BP I use [Maksim Shestakov JSON plugin][json].
+For JSON parsing in BP I use [Maksim Shestakov's JSON plugin][json].
 
-For testing server APIs I use a local [Docker server][nakama-docker] with [Insomnia].
+For testing server APIs I use a local [Docker server][nakama-docker] with
+[Insomnia].
 
-Also, you need to be able to build C++ projects with Unreal, currently I am not distributing binary files.
+Also, to use this plugin you still need to be able to build C++ projects with
+Unreal as I'm not distributing binary files currently.
 
 ## Development Progress
 

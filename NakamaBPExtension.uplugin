@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "NakamaBPExtension",
+	"Description": "Allows Nakama functions to be called from Blueprints.",
+	"Category": "Other",
+	"CreatedBy": "DVG",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "NakamaBPExtension",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		}
+	],
+    "Plugins": [
+		{
+			"Name": "Nakama",
+			"Enabled": true
+		}
+    ]
+}

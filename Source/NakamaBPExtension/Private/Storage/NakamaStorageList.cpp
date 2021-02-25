@@ -23,8 +23,8 @@ void UNakamaStorageList::Activate()
 
 	NakamaBP::Client->listUsersStorageObjects(
 		NakamaBP::Session,
-		std::string(TCHAR_TO_UTF8(*UserID)),
 		std::string(TCHAR_TO_UTF8(*Collection)),
+		std::string(TCHAR_TO_UTF8(*UserID)),
 		Limit > 0 ? optional<int>(Limit) : nullopt,
 		nullopt, //Cursor.IsEmpty() ? nullopt : optional<std::string>(TCHAR_TO_UTF8(*Cursor)),
 		SuccessCallback,

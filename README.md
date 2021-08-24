@@ -68,12 +68,32 @@ Unreal as I'm not distributing binary files currently.
 
 ### TODO
 
-1. Global error delegate to catch all errors.
 1. Friends.
+    1. Add.
+    1. List.
+    1. Remove.
+    1. Block.
+1. Fix cursor in ListUserStorageObjects. Requires [next version of Nakama plugin](https://github.com/heroiclabs/nakama-unreal/issues/47#issuecomment-839185667).
+1. Global error delegate to catch all errors.
 1. Realtime chat.
+   1. Join chat room.
+   1. Send messages.
+   1. Receive messages.
+   1. Leave chat room.
+   1. Other commands...
 1. Matchmaking.
-1. Realtime multiplayer?
-1. Authoritative multiplayer?
+   1. Add user to matchmaking.
+   1. Remove user from matchmaking.
+   1. Automatically join match?
+   1. Help generate Bleve queries?
+1. [Realtime multiplayer][rtclient]?
+   1. [Add callback to receive messages][rtclient-callback].
+   1. Send messages.
+   1. Create.
+   1. Join.
+   1. Leave match.
+   1. List opponents.
+1. Authoritative multiplayer? *There might not be any point providing helpers for this once everything else is done*.
 
 [nakama]: https://github.com/heroiclabs/nakama
 [nakama-unreal]: https://github.com/heroiclabs/nakama-unreal
@@ -87,3 +107,5 @@ Unreal as I'm not distributing binary files currently.
 [authenticate]: https://heroiclabs.com/docs/unreal-client-guide/#authenticate
 [rpcs]: https://heroiclabs.com/docs/runtime-code-basics/
 [read-write]: https://heroiclabs.com/docs/storage-collections/
+[rtclient]: https://heroiclabs.github.io/nakama-cpp/html/class_n_rt_default_client_listener.html
+[rtclient-callback]: https://heroiclabs.github.io/nakama-cpp/html/class_n_rt_default_client_listener.html#aef5c02769cd03398dea002e64bfc980f

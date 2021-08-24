@@ -21,12 +21,13 @@ void UNakamaStorageList::Activate()
 	};
 	auto ErrorCallback = [&, this](const NAKAMA_NAMESPACE::NError& Error) { BroadcastError(OnError, Error); };
 
+	// UE_LOG(LogNakamaBPExtension, Log, TEXT("Nakama cursor sent: %s"), TCHAR_TO_UTF8(*Cursor));
 	NakamaBP::Client->listUsersStorageObjects(
 		NakamaBP::Session,
 		std::string(TCHAR_TO_UTF8(*Collection)),
 		std::string(TCHAR_TO_UTF8(*UserID)),
 		Limit > 0 ? optional<int>(Limit) : nullopt,
-		nullopt, //Cursor.IsEmpty() ? nullopt : optional<std::string>(TCHAR_TO_UTF8(*Cursor)),
+		Cursor.IsEmpty() ? nullopt : optional<std::string>(TCHAR_TO_UTF8(*Cursor)),
 		SuccessCallback,
 		ErrorCallback
 	);

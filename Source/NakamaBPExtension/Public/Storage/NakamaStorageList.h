@@ -16,16 +16,17 @@ struct FNakamaStorageObjectList {
 	TArray<FNakamaStorageObject> Objects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Cursor;
+	FString Cursor;
 
-	FNakamaStorageObjectList() : Cursor(-1) {}
-	FNakamaStorageObjectList(NAKAMA_NAMESPACE::NStorageObjectListPtr ObjectList): Cursor(-1)
+	FNakamaStorageObjectList() {}
+	FNakamaStorageObjectList(NAKAMA_NAMESPACE::NStorageObjectListPtr ObjectListPtr)
 	{
 		Objects = TArray<FNakamaStorageObject>();
-		for (const auto object : ObjectList->objects)
+		for (const auto object : ObjectListPtr->objects)
 		{
 			Objects.Add(FNakamaStorageObject(object));
 		}
+		Cursor = FString(UTF8_TO_TCHAR(ObjectListPtr->cursor.c_str()));
 	}
 };
 
@@ -40,8 +41,6 @@ class NAKAMABPEXTENSION_API UNakamaStorageList : public UOnlineBlueprintCallProx
 	GENERATED_BODY()
 
 public:
-	// Generate a delegate for the OnGetResult event
-
 	void Activate() override;
 
 	UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true", AutoCreateRefTerm = "SuccessDelegate, ErrorDelegate"), Category = "Nakama BP Extension|Storage")

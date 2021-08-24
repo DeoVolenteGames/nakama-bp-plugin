@@ -20,42 +20,24 @@ class NAKAMABPEXTENSION_API TNakamaProxy
 {
 protected:
 	void BroadcastError(OnAnyResponse ResponseErrorFunc, const NAKAMA_NAMESPACE::NError& ErrorMessage);
+	void BroadcastError(OnAnyResponse ResponseErrorFunc, const NAKAMA_NAMESPACE::NRtError& ErrorMessage);
 	void BroadcastError(OnAnyResponse ResponseErrorFunc, const FString ErrorMessage);
 	void BroadcastSuccess(OnAnyResponse ResponseSuccessFunc, SuccessResponse Success);
 
 	OnSuccessResponse OptionalSuccessFunc;
 	FOnErrorResponse OptionalErrorFunc;
-
-	// I have a baaaad feeling about this...
-	template<typename ArrayType, typename VectorType>
-    static TArray<ArrayType> MakeArray(const VectorType& Vector)
-	{
-		TArray<ArrayType> Array;
-		Array.SetNumUninitialized(Vector.size());
- 
-		for(int i=0; i< Vector.size(); i++){
-			Array[i] = Vector[i];
-		}
-
-		return Array;
-	}
-
-	// // I have a baaaad feeling about this...
-	// template<typename VectorType, typename ArrayType>
- //    static VectorType MakeVec(const ArrayType& Array)
-	// {
-	// 	VectorType Vector;
-	// 	for (auto ID : Array)
-	// 	{
-	// 		Vector.push_back(ID.ToNReadStorageObjectId());
-	// 	}
- //
-	// 	return Vector;
-	// }
 };
 
 template<typename SuccessResponse, typename OnSuccessResponse, typename OnAnyResponse>
 inline void TNakamaProxy<SuccessResponse, OnSuccessResponse, OnAnyResponse>::BroadcastError(OnAnyResponse ResponseErrorFunc, const NAKAMA_NAMESPACE::NError& ErrorMessage)
+{
+	UE_LOG(LogNakamaBPExtension, Error, TEXT("Nakama error: %s"), UTF8_TO_TCHAR(ErrorMessage.message.c_str()));
+	OptionalErrorFunc.ExecuteIfBound(FNakamaErrorResponse(ErrorMessage));
+	ResponseErrorFunc.Broadcast(SuccessResponse(), FNakamaErrorResponse(ErrorMessage));
+};
+
+template<typename SuccessResponse, typename OnSuccessResponse, typename OnAnyResponse>
+inline void TNakamaProxy<SuccessResponse, OnSuccessResponse, OnAnyResponse>::BroadcastError(OnAnyResponse ResponseErrorFunc, const NAKAMA_NAMESPACE::NRtError& ErrorMessage)
 {
 	UE_LOG(LogNakamaBPExtension, Error, TEXT("Nakama error: %s"), UTF8_TO_TCHAR(ErrorMessage.message.c_str()));
 	OptionalErrorFunc.ExecuteIfBound(FNakamaErrorResponse(ErrorMessage));

@@ -16,7 +16,7 @@ void UNakamaStorageWrite::Activate()
 
 	auto SuccessCallback = [&, this](const NAKAMA_NAMESPACE::NStorageObjectAcks& ObjectAcks)
 	{
-		BroadcastSuccess(OnSuccess, MakeArray<FNakamaStorageObjectAck>(ObjectAcks));
+		BroadcastSuccess(OnSuccess, NakamaBP::MakeArray<FNakamaStorageObjectAck>(ObjectAcks));
 	};
 	auto ErrorCallback = [&, this](const NAKAMA_NAMESPACE::NError& Error) { BroadcastError(OnError, Error); };
 

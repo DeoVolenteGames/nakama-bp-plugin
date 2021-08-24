@@ -16,7 +16,7 @@ void UNakamaStorageRead::Activate()
 
 	auto SuccessCallback = [&, this](const NAKAMA_NAMESPACE::NStorageObjects& StorageObjects)
 	{
-		BroadcastSuccess(OnSuccess, MakeArray<FNakamaStorageObject>(StorageObjects));
+		BroadcastSuccess(OnSuccess, NakamaBP::MakeArray<FNakamaStorageObject>(StorageObjects));
 	};
 	auto ErrorCallback = [&, this](const NAKAMA_NAMESPACE::NError& Error) { BroadcastError(OnError, Error); };
 

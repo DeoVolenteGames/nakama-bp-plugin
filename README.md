@@ -65,15 +65,31 @@ Unreal as I'm not distributing binary files currently.
     1. Write.
     1. List.
     1. Delete.
+1. Matchmaking. **NEEDS TESTING**.
+   1. Add user to matchmaking.
+   1. Remove user from matchmaking.
+   1. Automatically join RT match?
+1. [Realtime multiplayer][rtclient]. Uses NakamaClientSubsystem to track state. **NEEDS TESTING**.
+   1. [Add callback to receive messages][rtclient-callback].
+   1. Send messages.
+   1. Create match.
+   1. Join match by ID.
+   1. Leave match.
 
 ### TODO
 
+1. Fix cursor in ListUserStorageObjects. Requires [next version of Nakama plugin](https://github.com/heroiclabs/nakama-unreal/issues/47#issuecomment-839185667).
+1. Matchmaking.
+   1. Help generate Bleve queries?
+   1. Automatically join match via IP with UE4 networking?
+   1. Allow for manually joining matches.
+1. [Realtime multiplayer][rtclient]?
+   1. List opponents.
 1. Friends.
     1. Add.
     1. List.
     1. Remove.
     1. Block.
-1. Fix cursor in ListUserStorageObjects. Requires [next version of Nakama plugin](https://github.com/heroiclabs/nakama-unreal/issues/47#issuecomment-839185667).
 1. Global error delegate to catch all errors.
 1. Realtime chat.
    1. Join chat room.
@@ -81,18 +97,6 @@ Unreal as I'm not distributing binary files currently.
    1. Receive messages.
    1. Leave chat room.
    1. Other commands...
-1. Matchmaking.
-   1. Add user to matchmaking.
-   1. Remove user from matchmaking.
-   1. Automatically join match?
-   1. Help generate Bleve queries?
-1. [Realtime multiplayer][rtclient]?
-   1. [Add callback to receive messages][rtclient-callback].
-   1. Send messages.
-   1. Create.
-   1. Join.
-   1. Leave match.
-   1. List opponents.
 1. Authoritative multiplayer? *There might not be any point providing helpers for this once everything else is done*.
 
 [nakama]: https://github.com/heroiclabs/nakama

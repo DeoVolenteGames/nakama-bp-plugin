@@ -8,6 +8,8 @@
 DEFINE_LOG_CATEGORY(LogNakamaBPExtension);
 
 NAKAMA_NAMESPACE::NClientPtr FNakamaBPExtensionModule::Client;
+NAKAMA_NAMESPACE::NRtClientPtr FNakamaBPExtensionModule::RtClient;
+// NAKAMA_NAMESPACE::NRtDefaultClientListener FNakamaBPExtensionModule::RtListener;
 NAKAMA_NAMESPACE::NSessionPtr FNakamaBPExtensionModule::Session;
 
 // FNakamaBPExtensionModule::FNakamaBPExtensionModule()
@@ -21,7 +23,11 @@ void FNakamaBPExtensionModule::StartupModule()
 	NAKAMA_NAMESPACE::NLogger::init(std::make_shared<NAKAMA_NAMESPACE::NUnrealLogSink>(), NAKAMA_NAMESPACE::NLogLevel::Debug);
 
 	// TODO: Read client default parameters from config file (ini).
-	NakamaBP::Client = NAKAMA_NAMESPACE::createDefaultClient(NAKAMA_NAMESPACE::NClientParameters());
+	Client = NAKAMA_NAMESPACE::createDefaultClient(NAKAMA_NAMESPACE::NClientParameters());
+	// TODO: Read client default parameters from config file (ini).
+	RtClient = Client->createRtClient(NAKAMA_NAMESPACE::RtClientParameters());
+	// RtListener = NAKAMA_NAMESPACE::NRtDefaultClientListener();
+	// RtClient->setListener(&RtListener);
 
 	 // TODO: Restore session: https://github.com/heroiclabs/nakama-cpp/blob/master/examples/nakama-cmake-client-example/nakama-cmake-client-example.cpp#L47
 }
@@ -36,6 +42,7 @@ void FNakamaBPExtensionModule::Tick(float DeltaTime)
 {
 	// Tick client to see if async functions have completed.
 	if (Client) Client->tick();
+    if (RtClient) RtClient->tick();
 }
 
 #undef LOCTEXT_NAMESPACE

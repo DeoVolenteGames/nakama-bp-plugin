@@ -37,8 +37,36 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	static NAKAMA_NAMESPACE::NClientPtr Client;
+	static NAKAMA_NAMESPACE::NRtClientPtr RtClient;
+	// static NAKAMA_NAMESPACE::NRtDefaultClientListener RtListener;
 	static NAKAMA_NAMESPACE::NSessionPtr Session;
 	// static FOnAnyNakamaErrorResponse DefaultErrorCallback;
+	
+	// I have a baaaad feeling about this...
+	template<typename ArrayType, typename VectorType>
+    static TArray<ArrayType> MakeArray(const VectorType& Vector)
+	{
+		TArray<ArrayType> Array;
+		Array.SetNumUninitialized(Vector.size());
+ 
+		for(int i=0; i< Vector.size(); i++){
+			Array[i] = Vector[i];
+		}
+
+		return Array;
+	}
+	// // I have a baaaad feeling about this...
+	// template<typename VectorType, typename ArrayType>
+ //    static VectorType MakeVec(const ArrayType& Array)
+	// {
+	// 	VectorType Vector;
+	// 	for (auto ID : Array)
+	// 	{
+	// 		Vector.push_back(ID.ToNReadStorageObjectId());
+	// 	}
+ //
+	// 	return Vector;
+	// }
 };
 
 using NakamaBP = FNakamaBPExtensionModule;

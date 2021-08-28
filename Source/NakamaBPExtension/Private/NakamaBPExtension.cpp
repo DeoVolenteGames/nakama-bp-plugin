@@ -7,6 +7,7 @@
 
 DEFINE_LOG_CATEGORY(LogNakamaBPExtension);
 
+// TODO: Consider moving this into the subsystem so that we can test multiplayer more easily in the editor
 NAKAMA_NAMESPACE::NClientPtr FNakamaBPExtensionModule::Client;
 NAKAMA_NAMESPACE::NRtClientPtr FNakamaBPExtensionModule::RtClient;
 // NAKAMA_NAMESPACE::NRtDefaultClientListener FNakamaBPExtensionModule::RtListener;
@@ -36,6 +37,9 @@ void FNakamaBPExtensionModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
+	
+	if (Client) Client->disconnect();
+	if (RtClient) RtClient->disconnect();
 }
 
 void FNakamaBPExtensionModule::Tick(float DeltaTime)

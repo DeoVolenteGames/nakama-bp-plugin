@@ -18,12 +18,18 @@ class NAKAMABPEXTENSION_API UNakamaRTLibrary : public UBlueprintFunctionLibrary
 
 	// Connect the RT Client to the server. Needed before matchmaking or trying to connect to a match.
 	// Returns true if the client was set up correctly, NOT if it is connected!
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Connect Nakama RT Client"), Category = "Nakama BP Extension|RT Multiplayer")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create Nakama RT Client"), Category = "Nakama BP Extension|RT Multiplayer")
     static bool ConnectNakamaRTClient(const bool CreateStatus = true);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Leave Nakama Match"), Category = "Nakama BP Extension|RT Multiplayer")
 	static void LeaveMatch(const FString MatchID);
 
 	UFUNCTION(BlueprintCallable, Category = "Nakama BP Extension|RT Multiplayer")
-    static void SendMatchData(const FString MatchID, const int OpCode, const FString Data);
+	static void SendMatchData(const FString MatchID, const int OpCode, const FString Data);
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Nakama RT Client is Connected"), Category = "Nakama BP Extension|RT Multiplayer")
+    static bool RTClientIsConnected();
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Disconnect Nakama RT Client"), Category = "Nakama BP Extension|RT Multiplayer")
+	static void DisconnectRTClient();
 };

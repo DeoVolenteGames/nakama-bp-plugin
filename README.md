@@ -11,8 +11,8 @@ For more information about using Nakama, check out this three part tutorial by
 [Knights of Unity][kou-nakama-tutorial], it's for Unity but it should illustrate
 usage of Nakama pretty well.
 
-Currently designed and tested with Nakama server version 3.1.1, and Nakama
-Unreal version 2.4.0.
+Currently designed and tested with Nakama server version 3.1.1, Nakama
+Unreal version 2.4.0, and Unreal Engine 4.26.2.
 
 ## Getting Started
 
@@ -46,6 +46,12 @@ For testing server APIs I use a local [Docker server][nakama-docker] with
 Also, to use this plugin you still need to be able to build C++ projects with
 Unreal as I'm not distributing binary files currently.
 
+Currently cannot test real time MP in editor because the client session is
+stored as a static variable. For testing you need to have a separate process, so
+right click the project file and select `Launch Game` to open another client to
+test with. Currently considering changing the design to make it easier to test
+RT MP in the editor.
+
 ## Development Progress
 
 ### DONE
@@ -65,11 +71,12 @@ Unreal as I'm not distributing binary files currently.
     1. Write.
     1. List.
     1. Delete.
-1. Matchmaking. **NEEDS TESTING**.
+1. Matchmaking.
    1. Add user to matchmaking.
    1. Remove user from matchmaking.
    1. Automatically join RT match?
-1. [Realtime multiplayer][rtclient]. Uses NakamaClientSubsystem to track state. **NEEDS TESTING**.
+1. [Realtime (RT) multiplayer][rtclient]. Uses NakamaClientSubsystem to track state.
+   **NEEDS TESTING**.
    1. [Add callback to receive messages][rtclient-callback].
    1. Send messages.
    1. Create match.
@@ -78,7 +85,8 @@ Unreal as I'm not distributing binary files currently.
 
 ### TODO
 
-1. Fix cursor in ListUserStorageObjects. Requires [next version of Nakama plugin](https://github.com/heroiclabs/nakama-unreal/issues/47#issuecomment-839185667).
+1. Fix cursor in ListUserStorageObjects. Requires [next version of Nakama
+   plugin][list-cursor-issue].
 1. Matchmaking.
    1. Help generate Bleve queries?
    1. Automatically join match via IP with UE4 networking?
@@ -97,7 +105,8 @@ Unreal as I'm not distributing binary files currently.
    1. Receive messages.
    1. Leave chat room.
    1. Other commands...
-1. Authoritative multiplayer? *There might not be any point providing helpers for this once everything else is done*.
+1. Authoritative multiplayer? *There might not be any point providing helpers
+   for this once everything else is done*.
 
 [nakama]: https://github.com/heroiclabs/nakama
 [nakama-unreal]: https://github.com/heroiclabs/nakama-unreal
@@ -111,5 +120,6 @@ Unreal as I'm not distributing binary files currently.
 [authenticate]: https://heroiclabs.com/docs/unreal-client-guide/#authenticate
 [rpcs]: https://heroiclabs.com/docs/runtime-code-basics/
 [read-write]: https://heroiclabs.com/docs/storage-collections/
+[list-cursor-issue]: https://github.com/heroiclabs/nakama-unreal/issues/47#issuecomment-839185667
 [rtclient]: https://heroiclabs.github.io/nakama-cpp/html/class_n_rt_default_client_listener.html
 [rtclient-callback]: https://heroiclabs.github.io/nakama-cpp/html/class_n_rt_default_client_listener.html#aef5c02769cd03398dea002e64bfc980f

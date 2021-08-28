@@ -31,8 +31,10 @@ bool UNakamaBPExtensionLibrary::GetSessionKey(FString & Token)
 		Token = FString(NakamaBP::Session->getAuthToken().c_str());
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
+}
+
+void UNakamaBPExtensionLibrary::DisconnectClient()
+{
+	NakamaBP::Client->disconnect();
 }

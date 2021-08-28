@@ -22,5 +22,8 @@ class NAKAMABPEXTENSION_API UNakamaBPExtensionLibrary : public UBlueprintFunctio
 
 	// TODO: Return session struct
 	UFUNCTION(BlueprintPure, Category = "Nakama BP Extension")
-		static bool GetSessionKey(FString& Token);
+	static bool GetSessionKey(FString& Token);
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Disconnect Nakama Client"), Category = "Nakama BP Extension")
+        static void DisconnectClient();
 };

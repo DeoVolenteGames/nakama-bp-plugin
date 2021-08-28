@@ -42,15 +42,18 @@ public:
 	static NAKAMA_NAMESPACE::NSessionPtr Session;
 	// static FOnAnyNakamaErrorResponse DefaultErrorCallback;
 	
-	// I have a baaaad feeling about this...
+	// I still have a baaaad feeling about this...
 	template<typename ArrayType, typename VectorType>
-    static TArray<ArrayType> MakeArray(const VectorType& Vector)
+    static TArray<ArrayType> MakeArray(const std::vector<VectorType>& Vector)
 	{
+		// https://www.unrealengine.com/en-US/blog/optimizing-tarray-usage-for-performance?sessionInvalidated=true
 		TArray<ArrayType> Array;
-		Array.SetNumUninitialized(Vector.size());
- 
-		for(int i=0; i< Vector.size(); i++){
-			Array[i] = Vector[i];
+		Array.Reserve(Vector.size());
+		
+		for(int32 i=0; i < Vector.size(); i++){
+			UE_LOG(LogTemp, Log, TEXT("MakeArray: start[%d]"), i);
+			Array.Add(Vector[i]);
+			UE_LOG(LogTemp, Log, TEXT("MakeArray: end[%d]"), i);
 		}
 
 		return Array;

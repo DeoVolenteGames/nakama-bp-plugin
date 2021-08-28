@@ -29,5 +29,16 @@ void UNakamaRTLibrary::LeaveMatch(const FString MatchID)
 
 void UNakamaRTLibrary::SendMatchData(const FString MatchID, const int OpCode, const FString Data)
 {
+	// TODO: Allow specifying presences
 	NakamaBP::RtClient->sendMatchData(TCHAR_TO_UTF8(*MatchID), OpCode, TCHAR_TO_UTF8(*Data));
+}
+
+bool UNakamaRTLibrary::RTClientIsConnected()
+{
+	return NakamaBP::RtClient->isConnected();
+}
+
+void UNakamaRTLibrary::DisconnectRTClient()
+{
+	NakamaBP::RtClient->disconnect();
 }
